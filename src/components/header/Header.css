@@ -1,0 +1,14 @@
+.app-header {
+  background-color: transparent !important;
+}
+
+@media only screen and (min-width: 600px) {
+  .menu-button {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .buttons-box {
+    display: none !important;
+  }
+}

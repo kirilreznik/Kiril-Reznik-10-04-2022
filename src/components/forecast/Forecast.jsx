@@ -40,9 +40,11 @@ const Forecast = () => {
 
   return (
     <div>
-      {fiveDayForecast.DailyForecasts.map((day) => {
-        return <div>{day.Temperature.Minimum.Value}</div>;
-      })}
+      {loading
+        ? "loading"
+        : fiveDayForecast.DailyForecasts.map((day) => {
+            return <div>{day.Temperature.Minimum.Value}</div>;
+          })}
     </div>
   );
 };

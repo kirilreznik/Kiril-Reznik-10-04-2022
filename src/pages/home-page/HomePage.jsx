@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LiveSearch from "../../components/live-search/LiveSearch";
 import { useDispatch } from "react-redux";
@@ -6,16 +6,14 @@ import CurrentWeather from "../../components/current-weather/CurrentWeather";
 import Forecast from "../../components/forecast/Forecast";
 import { toggleTempUnit } from "../../redux/slices/weatherSlice";
 import { Button } from "@mui/material";
+import Header from "../../components/header/Header";
+
 const HomePage = () => {
-  const { currentCity } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (currentCity) {
-      console.log(currentCity);
-    }
-  }, [currentCity, dispatch]);
+
   return (
-    <div>
+    <>
+      <Header />
       <LiveSearch />
       <CurrentWeather />
       <Forecast />
@@ -26,7 +24,7 @@ const HomePage = () => {
       >
         clcik
       </Button>
-    </div>
+    </>
   );
 };
 
