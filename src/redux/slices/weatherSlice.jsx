@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialAppState = {
-  currentCountry: {},
+  currentCity: {},
   currentWeather: {},
   tempUnit: "Metric",
   fiveDayForecast: [],
@@ -11,8 +11,8 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState: initialAppState,
   reducers: {
-    setCurrentCountry: (state, action) => {
-      state.currentCountry = action.payload;
+    setCurrentCity: (state, action) => {
+      state.currentCity = action.payload;
     },
     setCurrentWeather: (state, action) => {
       state.currentWeather = action.payload;
@@ -38,7 +38,7 @@ const weatherSlice = createSlice({
   },
 });
 export const {
-  setCurrentCountry,
+  setCurrentCity,
   setCurrentWeather,
   setFiveDayForecast,
   addFavoriteCity,
