@@ -1,0 +1,18 @@
+.forecast-paper {
+  height: 220px !important;
+  width: 160px !important;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1.2s !important;
+  justify-content: space-between;
+  border-radius: 20px !important;
+}
+.forecast-paper:hover {
+  transform: scale(1.2);
+}
+.forecast-icon {
+  height: 110px;
+  width: 110px;
+}

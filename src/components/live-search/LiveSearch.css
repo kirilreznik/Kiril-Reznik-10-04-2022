@@ -1,0 +1,15 @@
+.live-search {
+  width: 20vw;
+  margin: auto;
+}
+@media only screen and (max-width: 1250px) {
+  .live-search {
+    width: 35%;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .live-search {
+    width: 65%;
+    margin-top: 20px;
+  }
+}

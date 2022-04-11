@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFiveDayForecast } from "../../redux/slices/weatherSlice";
-
+import ForecastElement from "../forecast-element/ForecastElement";
 const Forecast = () => {
-  const { currentCity, tempUnit, fiveDayForecast } = useSelector(
-    (state) => state.weather
-  );
+  const { currentWeather, currentCity, tempUnit, fiveDayForecast } =
+    useSelector((state) => state.weather);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   const getForecast = async () => {
-    const metricEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=jn4VBK22GgPtrVMLU5ZKeDxWbRral6tq&metric=true`;
-    const imperialEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=jn4VBK22GgPtrVMLU5ZKeDxWbRral6tq`;
+    const metricEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4&metric=true`;
+    const imperialEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4`;
     const endpointToFetch =
       tempUnit === "Metric" ? metricEndpoint : imperialEndpoint;
 
@@ -36,17 +35,22 @@ const Forecast = () => {
     if (currentCity.Key) {
       getForecast();
     }
-  }, [currentCity, tempUnit, dispatch]);
+  }, [currentWeather, tempUnit, dispatch]);
 
-  return (
-    <div>
-      {loading
-        ? "loading"
-        : fiveDayForecast.DailyForecasts.map((day) => {
-            return <div>{day.Temperature.Minimum.Value}</div>;
-          })}
-    </div>
-  );
+  return loading
+    ? "loading"
+    : fiveDayForecast.DailyForecasts.map((day, index) => {
+        return (
+          <ForecastElement
+            key={index}
+            iconNum={day.Day.Icon}
+            day={day.Date}
+            minTemp={day.Temperature.Minimum.Value}
+            maxTemp={day.Temperature.Maximum.Value}
+            unit={day.Temperature.Minimum.Unit}
+          />
+        );
+      });
 };
 
 export default Forecast;

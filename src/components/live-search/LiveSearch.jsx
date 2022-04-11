@@ -6,7 +6,7 @@ import { CircularProgress } from "@mui/material";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch } from "react-redux";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
-
+import "./LiveSearch.css";
 function LiveSearch() {
   const [options, setOptions] = useState([]);
   const [searchParam, setSearchParam] = useState("");
@@ -17,7 +17,7 @@ function LiveSearch() {
 
   const fetchData = async () => {
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=jn4VBK22GgPtrVMLU5ZKeDxWbRral6tq&q=${debouncedValue}`
+      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4&q=${debouncedValue}`
     )
       .then((response) => {
         if (response.ok) {
@@ -45,14 +45,13 @@ function LiveSearch() {
   }, [debouncedValue]);
 
   return (
-    <div>
+    <div className="live-search">
       <Autocomplete
         onChange={(event, newValue) => {
           if (newValue) {
             dispatch(setCurrentCity(newValue));
           }
         }}
-        id="live_search"
         getOptionLabel={(options) => options.LocalizedName}
         options={options}
         isOptionEqualToValue={(option, value) =>
