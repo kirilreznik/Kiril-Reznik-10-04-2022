@@ -12,6 +12,10 @@ const theme = createTheme({
       fontFamily: ["Roboto Condensed", "cursive"].join(","),
       fontWeight: "400",
     },
+    h6: {
+      fontFamily: ["Roboto Condensed", "cursive"].join(","),
+      fontWeight: "400",
+    },
     subtitle1: {
       fontFamily: ["Roboto Condensed", "cursive"].join(","),
       fontWeight: "400",

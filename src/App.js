@@ -26,6 +26,7 @@ const App = () => {
       className="root-div"
       style={{
         backgroundImage: `${bacgroundColor},url(${background})`,
+        minHeight: "100vh",
       }}
     >
       <BrowserRouter>

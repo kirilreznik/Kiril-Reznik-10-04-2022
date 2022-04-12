@@ -22,7 +22,7 @@
 }
 .mobile-switch-container {
   flex-direction: row;
-  width: 40%;
+  width: 60%;
   margin: auto !important;
   justify-content: space-between;
   border-radius: 20px !important;

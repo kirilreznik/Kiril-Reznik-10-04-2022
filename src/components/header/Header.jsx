@@ -1,18 +1,16 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import { AppBar, Box, Toolbar, Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./Header.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import MobileMenu from "../mobile-menu/MobileMenu";
+import appLogo from "../../assets/appLogo.svg";
+
 export default function Header() {
+  const { darkModeOn } = useSelector((state) => state.darkMode);
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   return (
     <Box>
@@ -22,12 +20,12 @@ export default function Header() {
         anchorEl={anchorEl}
       />
       <AppBar className="app-header" position="static" elevation={0}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
+        <Toolbar className="toolbar">
+          <img src={appLogo} className="logo"></img>
           <div className="buttons-box">
             <Button
+              style={{ color: "white", fontWeight: "bold" }}
+              size="large"
               onClick={() => {
                 navigate("/");
               }}
@@ -35,6 +33,8 @@ export default function Header() {
               Home
             </Button>
             <Button
+              style={{ color: "white", fontWeight: "bold" }}
+              size="large"
               onClick={() => {
                 navigate("/favorites");
               }}
