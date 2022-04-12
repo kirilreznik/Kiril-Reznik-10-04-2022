@@ -6,6 +6,7 @@ import { CircularProgress } from "@mui/material";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch } from "react-redux";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
+import API_KEY from "../../utils/constants";
 import "./LiveSearch.css";
 function LiveSearch() {
   const [options, setOptions] = useState([]);
@@ -17,7 +18,7 @@ function LiveSearch() {
 
   const fetchData = async () => {
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4&q=${debouncedValue}`
+      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${debouncedValue}`
     )
       .then((response) => {
         if (response.ok) {

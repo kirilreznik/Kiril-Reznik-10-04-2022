@@ -8,10 +8,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./Header.css";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import MobileMenu from "../mobile-menu/MobileMenu";
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
   return (
     <Box>
       <MobileMenu
@@ -25,8 +27,20 @@ export default function Header() {
             News
           </Typography>
           <div className="buttons-box">
-            <Button>Home</Button>
-            <Button>Favorites</Button>
+            <Button
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Home
+            </Button>
+            <Button
+              onClick={() => {
+                navigate("/favorites");
+              }}
+            >
+              Favorites
+            </Button>
           </div>
           <IconButton
             onClick={(e) => {

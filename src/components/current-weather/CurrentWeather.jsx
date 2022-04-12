@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
 import "./CurrentWeather.css";
-
+import API_KEY from "../../utils/constants";
 const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)", color: "white" };
 const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
 
@@ -20,7 +20,7 @@ const CurrentWeather = () => {
     fetch(
       `http://dataservice.accuweather.com/currentconditions/v1/${
         currentCity.Key ? currentCity.Key : "215854"
-      }?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4`
+      }?apikey=${API_KEY}`
     )
       .then((response) => {
         if (response.ok) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFiveDayForecast } from "../../redux/slices/weatherSlice";
 import ForecastElement from "../forecast-element/ForecastElement";
+import API_KEY from "../../utils/constants";
 const Forecast = () => {
   const { currentWeather, currentCity, tempUnit, fiveDayForecast } =
     useSelector((state) => state.weather);
@@ -9,8 +10,8 @@ const Forecast = () => {
   const dispatch = useDispatch();
 
   const getForecast = async () => {
-    const metricEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4&metric=true`;
-    const imperialEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4`;
+    const metricEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=${API_KEY}&metric=true`;
+    const imperialEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=${API_KEY}`;
     const endpointToFetch =
       tempUnit === "Metric" ? metricEndpoint : imperialEndpoint;
 

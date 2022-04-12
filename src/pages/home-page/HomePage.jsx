@@ -6,20 +6,26 @@ import Forecast from "../../components/forecast/Forecast";
 import { toggleTempUnit } from "../../redux/slices/weatherSlice";
 import { Button, Grid, Paper } from "@mui/material";
 import Header from "../../components/header/Header";
-import { setCurrentCity } from "../../redux/slices/weatherSlice";
 import "./HomePage.css";
 import { toggleDarkMode } from "../../redux/slices/darkModeSlice";
+import API_KEY from "../../utils/constants";
+import {
+  addCityToFavorites,
+  removeCityFromFavorites,
+  setCurrentCity,
+} from "../../redux/slices/weatherSlice";
 
 const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)" };
 const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
 
 const HomePage = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
+  const { currentCity } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=aR2iuaS0PfCfXKi0JGe0AizWFi9GpjA4&q=tel aviv`
+      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=tel aviv`
     )
       .then((response) => {
         if (response.ok) {
@@ -36,7 +42,7 @@ const HomePage = () => {
           setLoading(false);
         }
       });
-  });
+  }, []);
   return (
     <>
       <Header />
@@ -60,7 +66,14 @@ const HomePage = () => {
                 dispatch(toggleDarkMode());
               }}
             >
-              clcik
+              dark
+            </Button>
+            <Button
+              onClick={() => {
+                dispatch(addCityToFavorites(currentCity));
+              }}
+            >
+              favs
             </Button>
           </Paper>
         </Grid>

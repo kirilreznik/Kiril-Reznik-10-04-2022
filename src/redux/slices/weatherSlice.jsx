@@ -20,12 +20,12 @@ const weatherSlice = createSlice({
     setFiveDayForecast: (state, action) => {
       state.fiveDayForecast = action.payload;
     },
-    addFavoriteCity: (state, action) => {
+    addCityToFavorites: (state, action) => {
       state.favoriteCities.push({
-        citiy: action.payload,
+        city: action.payload,
       });
     },
-    removeFavoriteCity: (state, action) => {
+    removeCityFromFavorites: (state, action) => {
       state.favoriteCities.splice(
         state.favoriteCities.findIndex((city) => {
           return city.name === action.payload.name;
@@ -41,8 +41,8 @@ export const {
   setCurrentCity,
   setCurrentWeather,
   setFiveDayForecast,
-  addFavoriteCity,
-  removeFavoriteCity,
+  addCityToFavorites,
+  removeCityFromFavorites,
   toggleTempUnit,
 } = weatherSlice.actions;
 
