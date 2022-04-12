@@ -1,5 +1,6 @@
 .app-header {
   background-color: transparent !important;
+  margin-bottom: 40px;
 }
 
 @media only screen and (min-width: 600px) {

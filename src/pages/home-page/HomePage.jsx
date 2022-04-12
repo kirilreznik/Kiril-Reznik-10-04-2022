@@ -48,6 +48,14 @@ const HomePage = () => {
   return (
     <>
       <Header />
+      <Grid
+        item
+        className="mobile-switch-container"
+        style={darkModeOn ? darkStyle : lightStyle}
+      >
+        <TempSwitch />
+        <DarkSwitch />
+      </Grid>
       <Grid container className="main-layout">
         <Grid item className="layout-top" display={"flex"}>
           <CurrentWeather />

@@ -20,8 +20,19 @@
   flex-wrap: wrap !important;
   justify-content: space-between;
 }
+.mobile-switch-container {
+  flex-direction: row;
+  width: 40%;
+  margin: auto !important;
+  justify-content: space-between;
+  border-radius: 20px !important;
+  display: none;
+}
 
 @media only screen and (max-width: 950px) {
+  .mobile-switch-container {
+    display: flex;
+  }
   .layout-top {
     flex-direction: column !important;
     margin: auto;
@@ -29,5 +40,8 @@
   }
   .buttons-paper {
     display: none !important;
+  }
+  .layout-bottom {
+    justify-content: center;
   }
 }
