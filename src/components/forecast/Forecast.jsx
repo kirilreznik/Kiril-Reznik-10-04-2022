@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFiveDayForecast } from "../../redux/slices/weatherSlice";
 import ForecastElement from "../forecast-element/ForecastElement";
+import { setError } from "../../redux/slices/errorsSlice";
 import API_KEY from "../../utils/constants";
 const Forecast = () => {
   const { currentWeather, currentCity, tempUnit, fiveDayForecast } =
@@ -20,14 +21,14 @@ const Forecast = () => {
         if (response.ok) {
           return response.json();
         }
-        throw response;
       })
-      .then((data) => dispatch(setFiveDayForecast(data)))
-      .then(() => {
+      .then((data) => {
+        dispatch(setFiveDayForecast(data));
         setLoading(false);
       })
       .catch((err) => {
         if (err.statusText !== "OK") {
+          dispatch(setError("Something went wrong while fetching your data"));
           setLoading(false);
         }
       });

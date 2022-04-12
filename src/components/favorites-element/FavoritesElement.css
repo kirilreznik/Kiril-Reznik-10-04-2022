@@ -1,0 +1,20 @@
+.favorites-paper {
+  margin: 20px !important;
+  height: 220px !important;
+  width: 160px !important;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1.2s !important;
+  justify-content: center !important;
+  border-radius: 20px !important;
+  cursor: pointer;
+}
+.favorites-paper:hover {
+  transform: scale(1.2);
+}
+.favorites-icon {
+  height: 110px;
+  width: 110px;
+}

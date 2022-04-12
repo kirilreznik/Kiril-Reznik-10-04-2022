@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LiveSearch from "../../components/live-search/LiveSearch";
 import { useDispatch, useSelector } from "react-redux";
 import CurrentWeather from "../../components/current-weather/CurrentWeather";
 import Forecast from "../../components/forecast/Forecast";
-import { toggleTempUnit } from "../../redux/slices/weatherSlice";
-import { Button, Grid, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import Header from "../../components/header/Header";
 import "./HomePage.css";
-import { toggleDarkMode } from "../../redux/slices/darkModeSlice";
 import API_KEY from "../../utils/constants";
-import {
-  addCityToFavorites,
-  removeCityFromFavorites,
-  setCurrentCity,
-} from "../../redux/slices/weatherSlice";
+import DarkSwitch from "../../components/Switch/DarkSwitch";
+import TempSwitch from "../../components/Switch/TempSwitch";
+import FavoritesSwitch from "../../components/Switch/FavoritesSwitch";
+import { setCurrentCity } from "../../redux/slices/weatherSlice";
+import { setError } from "../../redux/slices/errorsSlice";
 
 const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)" };
 const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
@@ -23,26 +21,30 @@ const HomePage = () => {
   const { currentCity } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=tel aviv`
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => dispatch(setCurrentCity(data[0])))
-      .then(() => {
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.statusText !== "OK") {
+    if (!currentCity.Key) {
+      fetch(
+        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=tel aviv`
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          dispatch(setCurrentCity(data[0]));
           setLoading(false);
-        }
-      });
+        })
+        .catch((err) => {
+          if (err.statusText !== "OK") {
+            dispatch(setError("Something went wrong while fetching your data"));
+            setLoading(false);
+          }
+        });
+    }
   }, []);
+
   return (
     <>
       <Header />
@@ -54,27 +56,9 @@ const HomePage = () => {
             className="buttons-paper"
             style={darkModeOn ? darkStyle : lightStyle}
           >
-            <Button
-              onClick={() => {
-                dispatch(toggleTempUnit());
-              }}
-            >
-              clcik
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch(toggleDarkMode());
-              }}
-            >
-              dark
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch(addCityToFavorites(currentCity));
-              }}
-            >
-              favs
-            </Button>
+            <TempSwitch />
+            <DarkSwitch />
+            <FavoritesSwitch />
           </Paper>
         </Grid>
         <Grid item className="layout-bottom">

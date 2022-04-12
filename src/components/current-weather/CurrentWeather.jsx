@@ -2,6 +2,7 @@ import { Grid, Paper, SvgIcon, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
+import { setError } from "../../redux/slices/errorsSlice";
 import "./CurrentWeather.css";
 import API_KEY from "../../utils/constants";
 const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)", color: "white" };
@@ -26,14 +27,14 @@ const CurrentWeather = () => {
         if (response.ok) {
           return response.json();
         }
-        throw response;
       })
-      .then((data) => dispatch(setCurrentWeather(data)))
-      .then(() => {
+      .then((data) => {
+        dispatch(setCurrentWeather(data));
         setLoading(false);
       })
       .catch((err) => {
         if (err.statusText !== "OK") {
+          dispatch(setError("Something went wrong while fetching your data"));
           setLoading(false);
         }
       });
@@ -52,6 +53,7 @@ const CurrentWeather = () => {
         {currentCity.Key ? currentCity.LocalizedName : null}
       </Typography>
       <img
+        alt="weather-icon"
         className="current-weather-svg"
         src={
           currentWeather[0]

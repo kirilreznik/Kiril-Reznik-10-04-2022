@@ -1,17 +1,15 @@
-import React from "react";
-import { Autocomplete } from "@mui/material";
-import { TextField, Box } from "@mui/material";
-import { useEffect, useState } from "react";
-import { CircularProgress } from "@mui/material";
+import { Autocomplete, TextField, Box, CircularProgress } from "@mui/material";
+import { useEffect, useState, Fragment } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch } from "react-redux";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
+import { setError } from "../../redux/slices/errorsSlice";
 import API_KEY from "../../utils/constants";
 import "./LiveSearch.css";
+
 function LiveSearch() {
   const [options, setOptions] = useState([]);
   const [searchParam, setSearchParam] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const debouncedValue = useDebounce(searchParam, 700);
   const dispatch = useDispatch();
@@ -24,16 +22,15 @@ function LiveSearch() {
         if (response.ok) {
           return response.json();
         }
-        throw response;
       })
-      .then((data) => setOptions(data))
-      .then(() => {
+      .then((data) => {
+        setOptions(data);
         setLoading(false);
       })
       .catch((err) => {
         if (err.statusText !== "OK") {
           setLoading(false);
-          setError(err);
+          dispatch(setError("Something went wrong while fetching your data"));
         }
       });
   };
@@ -66,16 +63,17 @@ function LiveSearch() {
         )}
         renderInput={(params) => (
           <TextField
+            placeholder="Start typing here"
             {...params}
             InputProps={{
               ...params.InputProps,
               endAdornment: (
-                <React.Fragment>
+                <Fragment>
                   {loading ? (
                     <CircularProgress color="inherit" size={20} />
                   ) : null}
                   {params.InputProps.endAdornment}
-                </React.Fragment>
+                </Fragment>
               ),
             }}
             onChange={(e) => {
