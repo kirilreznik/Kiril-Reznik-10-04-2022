@@ -1,17 +1,16 @@
+import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/home-page/HomePage";
-import FavoritesPage from "./pages/favorites-page/FavoritesPage";
-import background from "./assets/bacground.jpg";
-import { useSelector } from "react-redux";
 import { lightColor, darkColor } from "./utils/colors";
 import { Alert, Snackbar } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearError } from "./redux/slices/errorsSlice";
+import { AppContainer } from "./App.styled";
+import routes from "./routes";
 
 const App = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const { error } = useSelector((state) => state.error);
-  const bacgroundColor = darkModeOn ? darkColor : lightColor;
+  const backgroundColor = darkModeOn ? darkColor : lightColor;
   const dispatch = useDispatch();
 
   const handleErrorClose = (event, reason) => {
@@ -22,18 +21,16 @@ const App = () => {
   };
 
   return (
-    <div
-      className="root-div"
-      style={{
-        backgroundImage: `${bacgroundColor},url(${background})`,
-        minHeight: "100vh",
-      }}
-    >
+    <AppContainer backgroundColor={backgroundColor}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-        </Routes>
+        <Suspense fallback={<div>loading...</div>}>
+          <Routes>
+            {routes.map(({ component, path }) => {
+              return <Route key={path} path={path} element={component} />;
+            })}
+          </Routes>
+        </Suspense>
+
         {error && (
           <Snackbar
             open={error}
@@ -44,7 +41,7 @@ const App = () => {
           </Snackbar>
         )}
       </BrowserRouter>
-    </div>
+    </AppContainer>
   );
 };
 

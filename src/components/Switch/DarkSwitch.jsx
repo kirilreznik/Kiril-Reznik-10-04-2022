@@ -5,9 +5,10 @@ import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkMode } from "../../redux/slices/darkModeSlice";
 
-const DarkSwitch = () => {
+export const DarkSwitch = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
+
   return (
     <FormGroup
       onClick={() => {

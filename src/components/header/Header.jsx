@@ -8,11 +8,12 @@ import MobileMenu from "../mobile-menu/MobileMenu";
 import appLogo from "../../assets/appLogo.svg";
 import appLogoLight from "../../assets/appLogoLight.svg";
 
-export default function Header() {
+export function Header() {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+
   return (
     <Box>
       <MobileMenu
@@ -60,3 +61,5 @@ export default function Header() {
     </Box>
   );
 }
+
+export default Header;

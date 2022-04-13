@@ -7,6 +7,7 @@ const initialAppState = {
   fiveDayForecast: [],
   favoriteCities: [],
 };
+
 const weatherSlice = createSlice({
   name: "weather",
   initialState: initialAppState,
@@ -27,11 +28,10 @@ const weatherSlice = createSlice({
       localStorage.setItem("favorites", JSON.stringify(state.favoriteCities));
     },
     removeCityFromFavorites: (state, action) => {
-      state.favoriteCities.splice(
-        state.favoriteCities.findIndex((city) => {
-          return city.name === action.payload.name;
-        })
+      const cityIndex = state.favoriteCities.findIndex(
+        ({ name }) => name === action.payload.name
       );
+      state.favoriteCities.splice(cityIndex);
       localStorage.setItem("favorites", JSON.stringify(state.favoriteCities));
     },
     setFavoritesFromStorage: (state, action) => {
@@ -42,6 +42,7 @@ const weatherSlice = createSlice({
     },
   },
 });
+
 export const {
   setCurrentCity,
   setCurrentWeather,

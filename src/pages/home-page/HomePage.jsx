@@ -1,37 +1,40 @@
-import { useEffect, useState } from "react";
-import LiveSearch from "../../components/live-search/LiveSearch";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CurrentWeather from "../../components/current-weather/CurrentWeather";
-import Forecast from "../../components/forecast/Forecast";
 import { Grid, Paper } from "@mui/material";
-import Header from "../../components/header/Header";
-import "./HomePage.css";
-import API_KEY from "../../utils/constants";
-import DarkSwitch from "../../components/Switch/DarkSwitch";
-import TempSwitch from "../../components/Switch/TempSwitch";
-import FavoritesSwitch from "../../components/Switch/FavoritesSwitch";
 import {
   setCurrentCity,
   setFavoritesFromStorage,
 } from "../../redux/slices/weatherSlice";
 import { setError } from "../../redux/slices/errorsSlice";
-import MobileSwitches from "../../components/mobile-switches/MobileSwitches";
+import {
+  LiveSearch,
+  CurrentWeather,
+  Forecast,
+  Header,
+  DarkSwitch,
+  TempSwitch,
+  FavoritesSwitch,
+  MobileSwitches,
+} from "../../components";
+import {
+  HomeLayoutGrid,
+  ButtonsPaper,
+  BottomLayout,
+  MainLayoutContainer,
+} from "./HomePage.styled";
 
-export const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)" };
-export const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
+export const darkStyle = "rgba(0, 0, 0, 0.6)";
+export const lightStyle = "rgba(255,255,255, 0.6)";
 
 const HomePage = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const { currentCity } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     if (!currentCity.Key) {
       fetch(
-        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=tel aviv`
+        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=tel aviv`
       )
         .then((response) => {
           if (response.ok) {
@@ -46,13 +49,10 @@ const HomePage = () => {
           if (favoritesFromStorage) {
             dispatch(setFavoritesFromStorage(favoritesFromStorage));
           }
-
-          setLoading(false);
         })
         .catch((err) => {
           if (err.statusText !== "OK") {
             dispatch(setError("Something went wrong while fetching your data"));
-            setLoading(false);
           }
         });
     }
@@ -62,23 +62,22 @@ const HomePage = () => {
     <>
       <Header />
       <MobileSwitches />
-      <Grid container className="main-layout">
-        <Grid item className="layout-top" display={"flex"}>
+
+      <MainLayoutContainer container>
+        <HomeLayoutGrid item display="flex">
           <CurrentWeather />
           <LiveSearch />
-          <Paper
-            className="buttons-paper"
-            style={darkModeOn ? darkStyle : lightStyle}
-          >
+          <ButtonsPaper background={darkModeOn ? darkStyle : lightStyle}>
             <TempSwitch />
             <DarkSwitch />
             <FavoritesSwitch />
-          </Paper>
-        </Grid>
-        <Grid item className="layout-bottom">
+          </ButtonsPaper>
+        </HomeLayoutGrid>
+
+        <BottomLayout item>
           <Forecast />
-        </Grid>
-      </Grid>
+        </BottomLayout>
+      </MainLayoutContainer>
     </>
   );
 };

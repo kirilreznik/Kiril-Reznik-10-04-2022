@@ -2,7 +2,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router";
 import "./MobileMenu.css";
-export default function MobileMenu({ isMenuOpen, setMenuOpen, anchorEl }) {
+
+export function MobileMenu({ isMenuOpen, setMenuOpen, anchorEl }) {
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -35,3 +36,5 @@ export default function MobileMenu({ isMenuOpen, setMenuOpen, anchorEl }) {
     </Menu>
   );
 }
+
+export default MobileMenu;

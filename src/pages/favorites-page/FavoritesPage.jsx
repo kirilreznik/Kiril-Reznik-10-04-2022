@@ -1,17 +1,13 @@
-import Header from "../../components/header/Header";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Header, Favorite, DarkSwitch, TempSwitch } from "../../components";
+import {
+  SwitchesContainer,
+  SwitchesPaper,
+  FavoritesContainer,
+} from "./FavoritesPage.styled";
 import { setError } from "../../redux/slices/errorsSlice";
-import API_KEY from "../../utils/constants";
-import MobileSwitches from "../../components/mobile-switches/MobileSwitches";
-import { Grid, Paper } from "@mui/material";
-import "./FavoritesPage.css";
-import FavoritesElement from "../../components/favorites-element/FavoritesElement";
-import DarkSwitch from "../../components/Switch/DarkSwitch";
-import FavoritesSwitch from "../../components/Switch/FavoritesSwitch";
-import TempSwitch from "../../components/Switch/TempSwitch";
 import { lightStyle, darkStyle } from "../home-page/HomePage";
-import { useLocation } from "react-router";
 
 const FavoritesPage = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
@@ -19,60 +15,60 @@ const FavoritesPage = () => {
   const [favoritesWeather, setFavoritesWeather] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const location = useLocation();
-  let data = [];
-  const retriveAll = async () => {
-    let promises = await favoriteCities.map((city) =>
-      fetch(
-        `http://dataservice.accuweather.com/currentconditions/v1/${city.city.Key}?apikey=${API_KEY}`
-      )
-        .then((resp) => resp.json())
-        .catch((error) => {
-          dispatch(setError("Something went wrong while fetching your data"));
-        })
-    );
-    let results = await Promise.all(promises);
-    data = await results.map((array) => array[0]);
-    setFavoritesWeather(data);
-    setLoading(false);
-  };
+
   useEffect(() => {
-    retriveAll();
+    const getWeatherData = async () => {
+      try {
+        const promises = await favoriteCities.map(({ city }) =>
+          fetch(
+            `http://dataservice.accuweather.com/currentconditions/v1/${city.Key}?apikey=${process.env.REACT_APP_API_KEY}`
+          ).then((response) => response.json())
+        );
+
+        const results = await Promise.allSettled(promises);
+        const data = results
+          ?.filter(({ status }) => status === "fulfilled")
+          .map((item) => item.value[0]);
+
+        setFavoritesWeather(data);
+        setLoading(false);
+      } catch (e) {
+        dispatch(setError("Something went wrong please try again later"));
+      }
+    };
+
+    getWeatherData();
   }, []);
 
   return (
     <div>
       <Header />
-      <MobileSwitches />
-      <Grid container mb={"20px"} className="switches-container">
-        <Paper
-          className="switches-paper"
-          style={darkModeOn ? darkStyle : lightStyle}
-        >
+
+      <SwitchesContainer container>
+        <SwitchesPaper background={darkModeOn ? darkStyle : lightStyle}>
           <TempSwitch />
-          {location.pathname === "/" && <FavoritesSwitch />}
           <DarkSwitch />
-        </Paper>
-      </Grid>
-      <Grid container className="favorites-container">
-        {loading
-          ? "Loading"
-          : favoriteCities.map((city, index) => {
-              return (
-                <>
-                  <FavoritesElement
-                    data={favoritesWeather[index]}
-                    cityName={city.city.LocalizedName}
-                    iconNum={favoritesWeather[index].WeatherIcon}
-                    temp={favoritesWeather[index].Temperature[tempUnit].Value}
-                    tempUnit={tempUnit}
-                    text={favoritesWeather[index].WeatherText}
-                    city={city.city}
-                  />
-                </>
-              );
-            })}
-      </Grid>
+        </SwitchesPaper>
+      </SwitchesContainer>
+
+      <FavoritesContainer container>
+        {loading ? (
+          <span>Loading</span>
+        ) : (
+          favoriteCities.map(({ city }, index) => (
+            <Favorite
+              key={city.LocalizedName}
+              data={favoritesWeather[index]}
+              cityName={city.LocalizedName}
+              iconNum={favoritesWeather[index].WeatherIcon}
+              temp={favoritesWeather[index].Temperature[tempUnit].Value}
+              tempUnit={tempUnit}
+              text={favoritesWeather[index].WeatherText}
+              city={city}
+            />
+          ))
+        )}
+      </FavoritesContainer>
     </div>
   );
 };

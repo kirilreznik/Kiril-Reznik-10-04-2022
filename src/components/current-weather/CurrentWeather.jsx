@@ -1,27 +1,28 @@
-import { Grid, Paper, SvgIcon, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Paper, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
 import { setError } from "../../redux/slices/errorsSlice";
+import IconDispenser from "../../utils/IconDispenser";
 import "./CurrentWeather.css";
-import API_KEY from "../../utils/constants";
+
 const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)", color: "white" };
 const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
 
-const CurrentWeather = () => {
+const DEFAULT_CITY = "215854";
+
+export const CurrentWeather = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const { currentCity, currentWeather, tempUnit } = useSelector(
     (state) => state.weather
   );
-
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   const getCurrentCity = async () => {
     fetch(
       `http://dataservice.accuweather.com/currentconditions/v1/${
-        currentCity.Key ? currentCity.Key : "215854"
-      }?apikey=${API_KEY}`
+        currentCity.Key || DEFAULT_CITY
+      }?apikey=${process.env.REACT_APP_API_KEY}`
     )
       .then((response) => {
         if (response.ok) {
@@ -30,15 +31,14 @@ const CurrentWeather = () => {
       })
       .then((data) => {
         dispatch(setCurrentWeather(data));
-        setLoading(false);
       })
       .catch((err) => {
         if (err.statusText !== "OK") {
           dispatch(setError("Something went wrong while fetching your data"));
-          setLoading(false);
         }
       });
   };
+
   useEffect(() => {
     getCurrentCity();
   }, [currentCity, dispatch]);
@@ -49,18 +49,14 @@ const CurrentWeather = () => {
       elevation={2}
       style={darkModeOn ? darkStyle : lightStyle}
     >
-      <Typography variant="h5">
-        {currentCity.Key ? currentCity.LocalizedName : null}
-      </Typography>
-      <img
-        alt="weather-icon"
-        className="current-weather-svg"
-        src={
-          currentWeather[0]
-            ? `https://www.accuweather.com/images/weathericons/${currentWeather[0].WeatherIcon}.svg`
-            : null
-        }
-      />
+      {currentCity.key && (
+        <Typography variant="h5">{currentCity.LocalizedName}</Typography>
+      )}
+
+      {currentCity.Key && (
+        <IconDispenser iconNumber={currentWeather[0]?.WeatherIcon} />
+      )}
+
       <Typography variant="h5">
         {currentWeather[0]
           ? currentWeather[0].Temperature[tempUnit].Value

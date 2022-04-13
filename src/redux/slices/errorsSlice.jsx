@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialAppState = {
-  error: undefined,
+  error: "",
 };
+
 const errorsSlice = createSlice({
   name: "errors",
   initialState: initialAppState,
@@ -11,7 +12,7 @@ const errorsSlice = createSlice({
       state.error = action.payload;
     },
     clearError: (state) => {
-      state.error = undefined;
+      state.error = "";
     },
   },
 });

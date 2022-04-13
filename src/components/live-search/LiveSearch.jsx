@@ -1,13 +1,12 @@
-import { Autocomplete, TextField, Box, CircularProgress } from "@mui/material";
 import { useEffect, useState, Fragment } from "react";
+import { Autocomplete, TextField, Box, CircularProgress } from "@mui/material";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch } from "react-redux";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
 import { setError } from "../../redux/slices/errorsSlice";
-import API_KEY from "../../utils/constants";
 import "./LiveSearch.css";
 
-function LiveSearch() {
+export function LiveSearch() {
   const [options, setOptions] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,7 +15,7 @@ function LiveSearch() {
 
   const fetchData = async () => {
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${debouncedValue}`
+      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${debouncedValue}`
     )
       .then((response) => {
         if (response.ok) {

@@ -1,27 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
+
+// Redux
 import store from "./redux/store";
 import { Provider } from "react-redux";
+
+// Theme
 import { ThemeProvider } from "@mui/styles";
-import { createTheme } from "@mui/material";
-const theme = createTheme({
-  typography: {
-    h5: {
-      fontFamily: ["Roboto Condensed", "cursive"].join(","),
-      fontWeight: "400",
-    },
-    h6: {
-      fontFamily: ["Roboto Condensed", "cursive"].join(","),
-      fontWeight: "400",
-    },
-    subtitle1: {
-      fontFamily: ["Roboto Condensed", "cursive"].join(","),
-      fontWeight: "400",
-    },
-  },
-});
+import theme from "./theme";
+
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>

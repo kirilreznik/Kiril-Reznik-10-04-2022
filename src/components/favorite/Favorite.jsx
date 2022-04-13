@@ -5,13 +5,14 @@ import { useNavigate } from "react-router";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
 import "./FavoritesElement.css";
+import IconDispenser from "../../utils/IconDispenser";
 
 const darkStyle = {
   backgroundColor: "rgba(0,0,0, 0.95)",
   color: "white",
 };
 
-const FavoritesElement = ({
+export const Favorite = ({
   cityName,
   iconNum,
   temp,
@@ -32,17 +33,16 @@ const FavoritesElement = ({
   return (
     <Paper
       style={darkModeOn ? darkStyle : null}
-      onClick={(e) => {
-        handleFavoriteClick(e);
-      }}
+      onClick={handleFavoriteClick}
       className="favorites-paper"
     >
       <Typography variant="h5">{cityName}</Typography>
-      <img
+      <IconDispenser iconNumber={iconNum} />
+      {/* <img
         className="forecast-icon"
         src={`https://www.accuweather.com/images/weathericons/${iconNum}.svg`}
         alt="icon"
-      ></img>
+      /> */}
       <Typography variant="subtitle1">
         {temp} {tempUnit === "Metric" ? "C" : "F"}
       </Typography>
@@ -51,4 +51,4 @@ const FavoritesElement = ({
   );
 };
 
-export default FavoritesElement;
+export default Favorite;

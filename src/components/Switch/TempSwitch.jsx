@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTempUnit } from "../../redux/slices/weatherSlice";
 
-const TempSwitch = () => {
+export const TempSwitch = () => {
   const { tempUnit } = useSelector((state) => state.weather);
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
@@ -13,12 +13,13 @@ const TempSwitch = () => {
   const handleTempSwitch = () => {
     dispatch(toggleTempUnit());
   };
+
   return (
     <FormGroup>
       <FormControlLabel
         labelPlacement="top"
         control={<Switch defaultChecked onChange={handleTempSwitch} />}
-        label={tempUnit === "Metric" ? "Celcius" : "Farenheit"}
+        label={tempUnit === "Metric" ? "Farenheit" : "Celcius"}
         style={{ color: darkModeOn ? "white" : "black" }}
       />
     </FormGroup>
