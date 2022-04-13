@@ -10,17 +10,23 @@ import API_KEY from "../../utils/constants";
 import DarkSwitch from "../../components/Switch/DarkSwitch";
 import TempSwitch from "../../components/Switch/TempSwitch";
 import FavoritesSwitch from "../../components/Switch/FavoritesSwitch";
-import { setCurrentCity } from "../../redux/slices/weatherSlice";
+import {
+  setCurrentCity,
+  setFavoritesFromStorage,
+} from "../../redux/slices/weatherSlice";
 import { setError } from "../../redux/slices/errorsSlice";
+import MobileSwitches from "../../components/mobile-switches/MobileSwitches";
 
-const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)" };
-const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
+export const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)" };
+export const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
 
 const HomePage = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const { currentCity } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (!currentCity.Key) {
@@ -34,6 +40,13 @@ const HomePage = () => {
         })
         .then((data) => {
           dispatch(setCurrentCity(data[0]));
+          const favoritesFromStorage = JSON.parse(
+            localStorage.getItem("favorites")
+          );
+          if (favoritesFromStorage) {
+            dispatch(setFavoritesFromStorage(favoritesFromStorage));
+          }
+
           setLoading(false);
         })
         .catch((err) => {
@@ -48,14 +61,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <Grid
-        item
-        className="mobile-switch-container"
-        style={darkModeOn ? darkStyle : lightStyle}
-      >
-        <TempSwitch />
-        <DarkSwitch />
-      </Grid>
+      <MobileSwitches />
       <Grid container className="main-layout">
         <Grid item className="layout-top" display={"flex"}>
           <CurrentWeather />

@@ -10,30 +10,28 @@ export default function MobileMenu({ isMenuOpen, setMenuOpen, anchorEl }) {
   };
 
   return (
-    <div>
-      <Menu
-        className="mobile-menu"
-        open={isMenuOpen}
-        onClose={handleClose}
-        anchorEl={anchorEl}
+    <Menu
+      open={isMenuOpen}
+      className="mobile-menu"
+      onClose={handleClose}
+      anchorEl={anchorEl}
+    >
+      <MenuItem
+        onClick={() => {
+          navigate("/");
+          handleClose();
+        }}
       >
-        <MenuItem
-          onClick={() => {
-            navigate("/");
-            handleClose();
-          }}
-        >
-          Home
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            navigate("/favorites");
-            handleClose();
-          }}
-        >
-          Favorites
-        </MenuItem>
-      </Menu>
-    </div>
+        Home
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate("/favorites");
+          handleClose();
+        }}
+      >
+        Favorites
+      </MenuItem>
+    </Menu>
   );
 }

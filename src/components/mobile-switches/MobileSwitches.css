@@ -1,0 +1,27 @@
+.mobile-switch-container {
+  flex-direction: row;
+  width: 80%;
+  margin: auto !important;
+  justify-content: space-between;
+  border-radius: 20px !important;
+  display: none;
+}
+
+@media only screen and (max-width: 950px) {
+  .mobile-switch-container {
+    display: flex;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .mobile-switch-container {
+    display: flex;
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .mobile-switch-container {
+    display: flex;
+    width: 95%;
+  }
+}

@@ -7,8 +7,7 @@ import { setCurrentCity } from "../../redux/slices/weatherSlice";
 import "./FavoritesElement.css";
 
 const darkStyle = {
-  backgroundColor: "rgba(0,0,0, 0.8)",
-  opacity: "0.8",
+  backgroundColor: "rgba(0,0,0, 0.95)",
   color: "white",
 };
 

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 
 const darkStyle = {
-  backgroundColor: "rgba(0,0,0, 0.8)",
+  backgroundColor: "rgba(0,0,0, 0.95)",
   opacity: "0.8",
   color: "white",
 };

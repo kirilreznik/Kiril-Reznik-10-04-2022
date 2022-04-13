@@ -24,6 +24,7 @@ const weatherSlice = createSlice({
       state.favoriteCities.push({
         city: action.payload,
       });
+      localStorage.setItem("favorites", JSON.stringify(state.favoriteCities));
     },
     removeCityFromFavorites: (state, action) => {
       state.favoriteCities.splice(
@@ -31,6 +32,10 @@ const weatherSlice = createSlice({
           return city.name === action.payload.name;
         })
       );
+      localStorage.setItem("favorites", JSON.stringify(state.favoriteCities));
+    },
+    setFavoritesFromStorage: (state, action) => {
+      state.favoriteCities = action.payload;
     },
     toggleTempUnit: (state) => {
       state.tempUnit = state.tempUnit === "Metric" ? "Imperial" : "Metric";
@@ -44,6 +49,7 @@ export const {
   addCityToFavorites,
   removeCityFromFavorites,
   toggleTempUnit,
+  setFavoritesFromStorage,
 } = weatherSlice.actions;
 
 export default weatherSlice.reducer;

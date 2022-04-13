@@ -7,13 +7,15 @@ export const lightColor = `linear-gradient(
 )`;
 
 export const darkColor = `linear-gradient(
-  rgba(8,14,44, 0),
-  rgba(8, 14, 44, 0.2),
+  rgb(8, 14, 44, 1),
+  rgb(8, 14, 44, 1),
+  rgba(8, 14, 44, 0.8),
   rgba(8, 14, 44, 0.7),
-  rgb(8, 14, 44, 1)
+  rgba(8, 14, 44, 0.3),
+  rgba(8,14,44, 0.3)
+  
+  
+  
 )`;
 
-/* rgba(0,0,0, 0),
-  rgba(0,0, 0, 0.2),
-  rgba(0, 0, 0, 0.7),
-  rgb(0, 0, 0, 1) */
+/* */

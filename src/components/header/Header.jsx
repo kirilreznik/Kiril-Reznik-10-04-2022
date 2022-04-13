@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import MobileMenu from "../mobile-menu/MobileMenu";
 import appLogo from "../../assets/appLogo.svg";
+import appLogoLight from "../../assets/appLogoLight.svg";
 
 export default function Header() {
   const { darkModeOn } = useSelector((state) => state.darkMode);
@@ -21,7 +22,7 @@ export default function Header() {
       />
       <AppBar className="app-header" position="static" elevation={0}>
         <Toolbar className="toolbar">
-          <img src={appLogo} className="logo"></img>
+          <img src={darkModeOn ? appLogoLight : appLogo} className="logo"></img>
           <div className="buttons-box">
             <Button
               style={{ color: "white", fontWeight: "bold" }}
@@ -52,7 +53,7 @@ export default function Header() {
             edge="end"
             aria-label="menu"
           >
-            <MenuIcon />
+            <MenuIcon style={{ color: "white" }} />
           </IconButton>
         </Toolbar>
       </AppBar>

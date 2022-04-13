@@ -1,6 +1,7 @@
 .buttons-paper {
   display: flex;
   flex-direction: column !important;
+  justify-content: center;
   height: 260px;
   width: 180px;
   padding: 20px !important;
@@ -19,14 +20,6 @@
   flex-direction: row !important;
   flex-wrap: wrap !important;
   justify-content: space-between;
-}
-.mobile-switch-container {
-  flex-direction: row;
-  width: 60%;
-  margin: auto !important;
-  justify-content: space-between;
-  border-radius: 20px !important;
-  display: none;
 }
 
 @media only screen and (max-width: 950px) {

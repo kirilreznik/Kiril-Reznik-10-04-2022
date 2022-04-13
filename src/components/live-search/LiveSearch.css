@@ -1,7 +1,8 @@
 .live-search {
-  width: 20vw;
+  width: 23vw;
   margin: auto;
 }
+
 @media only screen and (max-width: 1250px) {
   .live-search {
     width: 35%;
