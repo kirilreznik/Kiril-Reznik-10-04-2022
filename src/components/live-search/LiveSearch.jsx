@@ -15,7 +15,7 @@ export function LiveSearch() {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const fetchData = async () => {
     fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn&q=${debouncedValue}`
+      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn&q=${debouncedValue}`
     )
       .then((response) => {
         if (response.ok) {

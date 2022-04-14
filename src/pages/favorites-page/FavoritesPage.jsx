@@ -26,7 +26,7 @@ const FavoritesPage = () => {
       try {
         const promises = await favoriteCities.map(({ city }) =>
           fetch(
-            `http://dataservice.accuweather.com/currentconditions/v1/${city.Key}?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn`
+            `https://dataservice.accuweather.com/currentconditions/v1/${city.Key}?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn`
           ).then((response) => response.json())
         );
 

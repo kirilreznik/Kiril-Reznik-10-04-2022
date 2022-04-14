@@ -17,7 +17,7 @@ export const CurrentWeather = () => {
 
   const getCurrentCity = async () => {
     fetch(
-      `http://dataservice.accuweather.com/currentconditions/v1/${
+      `https://dataservice.accuweather.com/currentconditions/v1/${
         currentCity.Key || DEFAULT_CITY
       }?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn`
     )
