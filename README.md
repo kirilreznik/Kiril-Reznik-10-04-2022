@@ -1,6 +1,6 @@
 # Herolo weathe app
 
-Deployed on Amplify : https://main.dctrofc9mit9s.amplifyapp.com/
+Deployed on Amplify : https://main.d13nqonu8cqu1i.amplifyapp.com/
 
 ## Motivation
 
