@@ -64,5 +64,5 @@ Mobile
       <img alt="mobilehome" src="public/app-screenshots/mobilehome.PNG" width="20%">
       <img alt="mobilehome-dark" src="public/app-screenshots/mobilehome-dark.PNG" width="20%">
       <img alt="mobilefavorites" src="public/app-screenshots/mobilefavorites.PNG" width="20%">
-      <img alt="mobilewfavorites-dark" src="public/app-screenshots/mobilewfavorites-dark.PNG" width="20%">
+      <img alt="mobilefavorites-dark" src="/public/app-screenshots/mobilefavorites-dark.PNG" width="20%">
 </p>
