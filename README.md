@@ -1,4 +1,4 @@
-# Herolo weathe app
+# Herolo weather app
 
 Deployed on Amplify : https://main.d13nqonu8cqu1i.amplifyapp.com/
 
