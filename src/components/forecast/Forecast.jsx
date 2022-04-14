@@ -11,8 +11,8 @@ export const Forecast = () => {
   const dispatch = useDispatch();
 
   const getForecast = async () => {
-    const metricEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=${process.env.REACT_APP_API_KEY}&metric=true`;
-    const imperialEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=${process.env.REACT_APP_API_KEY}`;
+    const metricEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn&metric=true`;
+    const imperialEndpoint = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${currentCity.Key}?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn`;
     const endpointToFetch =
       tempUnit === "Metric" ? metricEndpoint : imperialEndpoint;
 

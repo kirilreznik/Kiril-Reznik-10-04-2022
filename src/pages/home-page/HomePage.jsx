@@ -30,7 +30,7 @@ const HomePage = () => {
   useEffect(() => {
     if (!currentCity.Key) {
       fetch(
-        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=tel aviv`
+        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn&q=tel aviv`
       )
         .then((response) => {
           if (response.ok) {

@@ -19,7 +19,7 @@ export const CurrentWeather = () => {
     fetch(
       `http://dataservice.accuweather.com/currentconditions/v1/${
         currentCity.Key || DEFAULT_CITY
-      }?apikey=${process.env.REACT_APP_API_KEY}`
+      }?apikey=mokei0h3nlv4AhzkRaaFigkfLEHVOFpn`
     )
       .then((response) => {
         if (response.ok) {

@@ -1,6 +1,6 @@
 # Herolo weathe app
 
-Deployed on Netlify : https://movie-name-game.netlify.app/
+Deployed on Amplify : https://main.dctrofc9mit9s.amplifyapp.com/
 
 ## Motivation
 
