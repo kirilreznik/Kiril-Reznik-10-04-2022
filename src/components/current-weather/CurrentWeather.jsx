@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Paper, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { Typography } from "@mui/material";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
 import { setError } from "../../redux/slices/errorsSlice";
 import IconDispenser from "../../utils/IconDispenser";
-import "./CurrentWeather.css";
+import { CurrentWeatheContainer } from "./CurrentWeather.styled";
 
 const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)", color: "white" };
 const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
@@ -44,19 +44,12 @@ export const CurrentWeather = () => {
   }, [currentCity, dispatch]);
 
   return (
-    <Paper
-      className="current-weather-container"
+    <CurrentWeatheContainer
       elevation={2}
       style={darkModeOn ? darkStyle : lightStyle}
     >
-      {currentCity.key && (
-        <Typography variant="h5">{currentCity.LocalizedName}</Typography>
-      )}
-
-      {currentCity.Key && (
-        <IconDispenser iconNumber={currentWeather[0]?.WeatherIcon} />
-      )}
-
+      <Typography variant="h5">{currentCity?.LocalizedName}</Typography>
+      <IconDispenser iconNumber={currentWeather[0]?.WeatherIcon} />
       <Typography variant="h5">
         {currentWeather[0]
           ? currentWeather[0].Temperature[tempUnit].Value
@@ -64,9 +57,9 @@ export const CurrentWeather = () => {
         {tempUnit === "Metric" ? "C" : "F"}
       </Typography>
       <Typography variant="subtitle1" fontSize="20px">
-        {currentWeather[0] ? currentWeather[0].WeatherText : null}
+        {currentWeather[0]?.WeatherText}
       </Typography>
-    </Paper>
+    </CurrentWeatheContainer>
   );
 };
 

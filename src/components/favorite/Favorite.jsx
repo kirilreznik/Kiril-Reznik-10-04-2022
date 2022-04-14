@@ -1,11 +1,11 @@
 import React from "react";
-import { Typography, Paper } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { Typography, Paper } from "@mui/material";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
-import "./FavoritesElement.css";
 import IconDispenser from "../../utils/IconDispenser";
+import { FavoritePaper } from "./Favorite.styled";
 
 const darkStyle = {
   backgroundColor: "rgba(0,0,0, 0.95)",
@@ -24,6 +24,7 @@ export const Favorite = ({
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleFavoriteClick = () => {
     dispatch(setCurrentWeather(data));
     dispatch(setCurrentCity(city));
@@ -31,23 +32,17 @@ export const Favorite = ({
   };
 
   return (
-    <Paper
+    <FavoritePaper
       style={darkModeOn ? darkStyle : null}
       onClick={handleFavoriteClick}
-      className="favorites-paper"
     >
       <Typography variant="h5">{cityName}</Typography>
       <IconDispenser iconNumber={iconNum} />
-      {/* <img
-        className="forecast-icon"
-        src={`https://www.accuweather.com/images/weathericons/${iconNum}.svg`}
-        alt="icon"
-      /> */}
       <Typography variant="subtitle1">
         {temp} {tempUnit === "Metric" ? "C" : "F"}
       </Typography>
       <Typography variant="subtitle1">{text}</Typography>
-    </Paper>
+    </FavoritePaper>
   );
 };
 

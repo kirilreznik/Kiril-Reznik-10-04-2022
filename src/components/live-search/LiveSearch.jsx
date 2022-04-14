@@ -44,7 +44,7 @@ export function LiveSearch() {
   return (
     <div className="live-search">
       <Autocomplete
-        onChange={(event, newValue) => {
+        onChange={(newValue) => {
           if (newValue) {
             dispatch(setCurrentCity(newValue));
           }

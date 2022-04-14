@@ -1,9 +1,6 @@
-import React from "react";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTempUnit } from "../../redux/slices/weatherSlice";
+import { FormGroup, FormControlLabel, Switch } from "@mui/material";
 
 export const TempSwitch = () => {
   const { tempUnit } = useSelector((state) => state.weather);

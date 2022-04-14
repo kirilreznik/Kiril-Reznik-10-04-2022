@@ -1,11 +1,10 @@
-import Switch from "@mui/material/Switch";
 import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FormControlLabel, Switch } from "@mui/material";
 import {
   addCityToFavorites,
   removeCityFromFavorites,
 } from "../../redux/slices/weatherSlice";
-import { FormControlLabel } from "@mui/material";
 
 export const FavoritesSwitch = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);

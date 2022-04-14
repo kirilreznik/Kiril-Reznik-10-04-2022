@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Header, Favorite, DarkSwitch, TempSwitch } from "../../components";
+import {
+  Header,
+  Favorite,
+  DarkSwitch,
+  TempSwitch,
+  MobileSwitches,
+} from "../../components";
 import {
   SwitchesContainer,
   SwitchesPaper,
@@ -43,7 +49,7 @@ const FavoritesPage = () => {
   return (
     <div>
       <Header />
-
+      <MobileSwitches />
       <SwitchesContainer container>
         <SwitchesPaper background={darkModeOn ? darkStyle : lightStyle}>
           <TempSwitch />

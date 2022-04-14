@@ -1,12 +1,19 @@
-import { AppBar, Box, Toolbar, Button, IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import "./Header.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import MobileMenu from "../mobile-menu/MobileMenu";
 import appLogo from "../../assets/appLogo.svg";
 import appLogoLight from "../../assets/appLogoLight.svg";
+import {
+  AppHeader,
+  AppToolbar,
+  AppLogo,
+  MenuButton,
+  ButtonBox,
+  HeaderButton,
+} from "./Header.styled";
 
 export function Header() {
   const { darkModeOn } = useSelector((state) => state.darkMode);
@@ -21,43 +28,40 @@ export function Header() {
         setMenuOpen={setMenuOpen}
         anchorEl={anchorEl}
       />
-      <AppBar className="app-header" position="static" elevation={0}>
-        <Toolbar className="toolbar">
-          <img src={darkModeOn ? appLogoLight : appLogo} className="logo"></img>
-          <div className="buttons-box">
-            <Button
-              style={{ color: "white", fontWeight: "bold" }}
+      <AppHeader elevation={0}>
+        <AppToolbar>
+          <AppLogo src={darkModeOn ? appLogoLight : appLogo} />
+          <ButtonBox>
+            <HeaderButton
               size="large"
               onClick={() => {
                 navigate("/");
               }}
             >
               Home
-            </Button>
-            <Button
-              style={{ color: "white", fontWeight: "bold" }}
+            </HeaderButton>
+            <HeaderButton
               size="large"
               onClick={() => {
                 navigate("/favorites");
               }}
             >
               Favorites
-            </Button>
-          </div>
-          <IconButton
+            </HeaderButton>
+          </ButtonBox>
+          <MenuButton
             onClick={(e) => {
               setAnchorEl(e.currentTarget);
               setMenuOpen(true);
             }}
-            className="menu-button"
             size="large"
             edge="end"
             aria-label="menu"
           >
             <MenuIcon style={{ color: "white" }} />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+          </MenuButton>
+        </AppToolbar>
+      </AppHeader>
     </Box>
   );
 }

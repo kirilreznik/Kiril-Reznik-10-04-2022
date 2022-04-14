@@ -15,6 +15,10 @@ code {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.current-weather-svg {
+  height: 140px;
+  width: 140px;
+}
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked
   + .MuiSwitch-track {
   background-color: grey !important;
@@ -30,3 +34,11 @@ code {
 .css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root .Mui-focused {
   border: none !important;
 }
+/* .favorites-icon {
+  height: 110px;
+  width: 110px;
+} */
+/* .forecast-icon {
+  height: 110px;
+  width: 110px;
+} */

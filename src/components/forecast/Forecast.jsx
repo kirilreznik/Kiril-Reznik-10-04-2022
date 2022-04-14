@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFiveDayForecast } from "../../redux/slices/weatherSlice";
-import ForecastElement from "../forecast-element/ForecastElement";
+import ForecastCard from "../forecast-card/ForecastCard";
 import { setError } from "../../redux/slices/errorsSlice";
 
 export const Forecast = () => {
@@ -33,28 +33,31 @@ export const Forecast = () => {
         }
       });
   };
+
   useEffect(() => {
     if (currentCity.Key) {
       getForecast();
     }
-  }, [currentWeather, tempUnit, dispatch]);
+  }, [currentWeather, tempUnit]);
 
-  return loading
-    ? "loading"
-    : fiveDayForecast.DailyForecasts.map(
-        ({ Day, Date, Temperature }, index) => {
-          return (
-            <ForecastElement
-              key={index}
-              iconNum={Day.Icon}
-              day={Date}
-              minTemp={Temperature.Minimum.Value}
-              maxTemp={Temperature.Maximum.Value}
-              unit={Temperature.Minimum.Unit}
-            />
-          );
-        }
-      );
+  return loading ? (
+    <span>loading</span>
+  ) : (
+    fiveDayForecast.DailyForecasts.map(
+      ({ Day, Date, Temperature, EpochDate }) => {
+        return (
+          <ForecastCard
+            key={EpochDate}
+            iconNum={Day.Icon}
+            day={Date}
+            minTemp={Temperature.Minimum.Value}
+            maxTemp={Temperature.Maximum.Value}
+            unit={Temperature.Minimum.Unit}
+          />
+        );
+      }
+    )
+  );
 };
 
 export default Forecast;
