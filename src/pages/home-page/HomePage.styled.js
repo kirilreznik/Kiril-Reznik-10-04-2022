@@ -16,7 +16,9 @@ export const HomeLayoutGrid = styled(Grid)`
   }
 `;
 
-export const ButtonsPaper = styled(Paper)`
+export const ButtonsPaper = styled(({ darkModeOn, ...rest }) => (
+  <Paper {...rest} />
+))`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +27,9 @@ export const ButtonsPaper = styled(Paper)`
   padding: 20px;
   border-radius: 20px;
   transition: 1.2s;
-  background: ${(props) => props.background};
+  color: ${({ darkModeOn }) => (darkModeOn ? "white" : "black")};
+  background-color: ${({ darkModeOn }) =>
+    darkModeOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255,255,255, 0.6)"};
 
   @media (max-width: ${mobileSize}px) {
     display: none;

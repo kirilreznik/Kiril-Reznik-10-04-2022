@@ -1,16 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { Typography, Paper } from "@mui/material";
+import { Typography } from "@mui/material";
 import { setCurrentWeather } from "../../redux/slices/weatherSlice";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
 import IconDispenser from "../../utils/IconDispenser";
 import { FavoritePaper } from "./Favorite.styled";
-
-const darkStyle = {
-  backgroundColor: "rgba(0,0,0, 0.95)",
-  color: "white",
-};
 
 export const Favorite = ({
   cityName,
@@ -32,10 +27,7 @@ export const Favorite = ({
   };
 
   return (
-    <FavoritePaper
-      style={darkModeOn ? darkStyle : null}
-      onClick={handleFavoriteClick}
-    >
+    <FavoritePaper darkModeOn={darkModeOn} onClick={handleFavoriteClick}>
       <Typography variant="h5">{cityName}</Typography>
       <IconDispenser iconNumber={iconNum} />
       <Typography variant="subtitle1">

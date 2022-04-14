@@ -1,6 +1,11 @@
 import { styled, Paper } from "@mui/material";
 
-export const FavoritePaper = styled(Paper)`
+export const FavoritePaper = styled(({ darkModeOn, ...rest }) => (
+  <Paper {...rest} />
+))`
+  color: ${({ darkModeOn }) => (darkModeOn ? "white" : "black")};
+  background-color: ${({ darkModeOn }) =>
+    darkModeOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255,255,255, 0.6)"};
   margin: 20px;
   height: 220px;
   width: 160px;

@@ -8,7 +8,9 @@ export const SwitchesContainer = styled(Grid)`
   }
 `;
 
-export const SwitchesPaper = styled(Paper)`
+export const SwitchesPaper = styled(({ darkModeOn, ...rest }) => (
+  <Paper {...rest} />
+))`
   max-width: fit-content;
   block-size: fit-content;
   margin: auto;
@@ -17,7 +19,9 @@ export const SwitchesPaper = styled(Paper)`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  background: ${({ background }) => background};
+  color: ${({ darkModeOn }) => (darkModeOn ? "white" : "black")};
+  background-color: ${({ darkModeOn }) =>
+    darkModeOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255,255,255, 0.6)"};
 `;
 
 export const FavoritesContainer = styled(Grid)`

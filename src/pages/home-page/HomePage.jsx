@@ -22,9 +22,6 @@ import {
   MainLayoutContainer,
 } from "./HomePage.styled";
 
-export const darkStyle = "rgba(0, 0, 0, 0.6)";
-export const lightStyle = "rgba(255,255,255, 0.6)";
-
 const HomePage = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const { currentCity } = useSelector((state) => state.weather);
@@ -66,7 +63,7 @@ const HomePage = () => {
         <HomeLayoutGrid item display="flex">
           <CurrentWeather />
           <LiveSearch />
-          <ButtonsPaper background={darkModeOn ? darkStyle : lightStyle}>
+          <ButtonsPaper darkModeOn={darkModeOn}>
             <TempSwitch />
             <DarkSwitch />
             <FavoritesSwitch />

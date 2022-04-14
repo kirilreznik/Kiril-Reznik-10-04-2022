@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { lightColor, darkColor } from "./utils/colors";
 import { Alert, Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError } from "./redux/slices/errorsSlice";
@@ -10,7 +9,6 @@ import routes from "./routes";
 const App = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
   const { error } = useSelector((state) => state.error);
-  const backgroundColor = darkModeOn ? darkColor : lightColor;
   const dispatch = useDispatch();
 
   const handleErrorClose = (event, reason) => {
@@ -21,7 +19,7 @@ const App = () => {
   };
 
   return (
-    <AppContainer backgroundColor={backgroundColor}>
+    <AppContainer darkModeOn={darkModeOn}>
       <BrowserRouter>
         <Suspense fallback={<div>loading...</div>}>
           <Routes>

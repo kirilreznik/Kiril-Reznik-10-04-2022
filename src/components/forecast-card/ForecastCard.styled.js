@@ -1,6 +1,12 @@
 import { styled, Paper } from "@mui/material";
 import { mobileSize } from "../../utils/screen-sizes";
-export const ForecastCardPaper = styled(Paper)`
+
+export const ForecastCardPaper = styled(({ darkModeOn, ...rest }) => (
+  <Paper {...rest} />
+))`
+  color: ${({ darkModeOn }) => (darkModeOn ? "white" : "black")};
+  background-color: ${({ darkModeOn }) =>
+    darkModeOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255,255,255, 0.6)"};
   height: 220px;
   width: 160px;
   padding: 15px;
@@ -13,9 +19,7 @@ export const ForecastCardPaper = styled(Paper)`
   :hover {
     transform: scale(1.2);
   }
-  @media only screen and (max-width: ${mobileSize}) {
-    .forecast-paper {
-      margin: 10px;
-    }
+  @media only screen and (max-width: ${mobileSize}px) {
+    margin: 10px;
   }
 `;

@@ -6,9 +6,6 @@ import { setError } from "../../redux/slices/errorsSlice";
 import IconDispenser from "../../utils/IconDispenser";
 import { CurrentWeatheContainer } from "./CurrentWeather.styled";
 
-const darkStyle = { backgroundColor: "rgba(0, 0, 0, 0.6)", color: "white" };
-const lightStyle = { backgroundColor: "rgba(255,255,255, 0.6)" };
-
 const DEFAULT_CITY = "215854";
 
 export const CurrentWeather = () => {
@@ -44,10 +41,7 @@ export const CurrentWeather = () => {
   }, [currentCity, dispatch]);
 
   return (
-    <CurrentWeatheContainer
-      elevation={2}
-      style={darkModeOn ? darkStyle : lightStyle}
-    >
+    <CurrentWeatheContainer elevation={2} darkModeOn={darkModeOn}>
       <Typography variant="h5">{currentCity?.LocalizedName}</Typography>
       <IconDispenser iconNumber={currentWeather[0]?.WeatherIcon} />
       <Typography variant="h5">

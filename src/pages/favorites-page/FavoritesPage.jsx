@@ -13,7 +13,6 @@ import {
   FavoritesContainer,
 } from "./FavoritesPage.styled";
 import { setError } from "../../redux/slices/errorsSlice";
-import { lightStyle, darkStyle } from "../home-page/HomePage";
 
 const FavoritesPage = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
@@ -51,7 +50,7 @@ const FavoritesPage = () => {
       <Header />
       <MobileSwitches />
       <SwitchesContainer container>
-        <SwitchesPaper background={darkModeOn ? darkStyle : lightStyle}>
+        <SwitchesPaper darkModeOn={darkModeOn}>
           <TempSwitch />
           <DarkSwitch />
         </SwitchesPaper>
