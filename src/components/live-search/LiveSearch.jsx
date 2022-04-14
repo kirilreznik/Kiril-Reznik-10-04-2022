@@ -1,10 +1,10 @@
 import { useEffect, useState, Fragment } from "react";
-import { Autocomplete, TextField, Box, CircularProgress } from "@mui/material";
+import { TextField, Box, CircularProgress } from "@mui/material";
 import useDebounce from "../../hooks/useDebounce";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCity } from "../../redux/slices/weatherSlice";
 import { setError } from "../../redux/slices/errorsSlice";
-import "./LiveSearch.css";
+import { StyledAutocomplete } from "./LiveSearch.styled";
 
 export function LiveSearch() {
   const [options, setOptions] = useState([]);
@@ -12,7 +12,7 @@ export function LiveSearch() {
   const [loading, setLoading] = useState(false);
   const debouncedValue = useDebounce(searchParam, 700);
   const dispatch = useDispatch();
-
+  const { darkModeOn } = useSelector((state) => state.darkMode);
   const fetchData = async () => {
     fetch(
       `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${debouncedValue}`
@@ -42,8 +42,9 @@ export function LiveSearch() {
   }, [debouncedValue]);
 
   return (
-    <div className="live-search">
-      <Autocomplete
+    <>
+      <StyledAutocomplete
+        darkModeOn={darkModeOn}
         onChange={(event, newValue) => {
           if (newValue) {
             dispatch(setCurrentCity(newValue));
@@ -81,7 +82,7 @@ export function LiveSearch() {
           />
         )}
       />
-    </div>
+    </>
   );
 }
 

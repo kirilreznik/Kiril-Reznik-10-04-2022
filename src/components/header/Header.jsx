@@ -33,6 +33,7 @@ export function Header() {
           <AppLogo src={darkModeOn ? appLogoLight : appLogo} />
           <ButtonBox>
             <HeaderButton
+              darkModeOn={darkModeOn}
               size="large"
               onClick={() => {
                 navigate("/");
@@ -41,6 +42,7 @@ export function Header() {
               Home
             </HeaderButton>
             <HeaderButton
+              darkModeOn={darkModeOn}
               size="large"
               onClick={() => {
                 navigate("/favorites");

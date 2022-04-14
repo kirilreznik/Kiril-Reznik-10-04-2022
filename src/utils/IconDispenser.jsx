@@ -21,13 +21,6 @@ import partlyCloudyNight from "../assets/animated/partlyCloudyNight.svg";
 import partlyNightHaze from "../assets/animated/partlyNightHaze.svg";
 import partlyNightRain from "../assets/animated/partlyNightRain.svg";
 
-// const iconMapper = {
-//   1: sunny,
-//   2: mostlySunny,
-//   3: mostlySunny,
-//   5
-// }
-
 const chooseIcon = (iconNumber) => {
   switch (iconNumber) {
     case 1:
@@ -121,7 +114,7 @@ const IconDispenser = ({ iconNumber }) => {
   return (
     <img
       src={iconToRender}
-      className="current-weather-svg"
+      style={{ height: "140px", width: "140px" }}
       alt="weather-icon"
     />
   );

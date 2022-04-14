@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { FormGroup, FormControlLabel, Switch } from "@mui/material";
+import { FormGroup, FormControlLabel } from "@mui/material";
 import { toggleDarkMode } from "../../redux/slices/darkModeSlice";
+import { StyledSwitch } from "./Switch.styled";
 
 export const DarkSwitch = () => {
   const { darkModeOn } = useSelector((state) => state.darkMode);
@@ -14,8 +15,8 @@ export const DarkSwitch = () => {
     >
       <FormControlLabel
         labelPlacement="top"
-        control={<Switch defaultChecked />}
-        label={darkModeOn ? "Ligt Mode" : "Dark Mode"}
+        control={<StyledSwitch defaultChecked />}
+        label={darkModeOn ? "Light Mode" : "Dark Mode"}
         style={{ color: darkModeOn ? "white" : "black" }}
       />
     </FormGroup>

@@ -11,34 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.root-div {
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.current-weather-svg {
-  height: 140px;
-  width: 140px;
-}
-.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked
-  + .MuiSwitch-track {
-  background-color: grey !important;
-  opacity: 0.95 !important;
-}
-.MuiSwitch-track {
-  background-color: white !important;
-  opacity: 1 !important;
-}
-.css-jsexje-MuiSwitch-thumb {
-  background-color: #7637aa !important;
-}
-.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root .Mui-focused {
-  border: none !important;
-}
-/* .favorites-icon {
-  height: 110px;
-  width: 110px;
-} */
-/* .forecast-icon {
-  height: 110px;
-  width: 110px;
-} */

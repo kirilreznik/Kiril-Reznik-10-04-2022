@@ -15,7 +15,7 @@ export const AppContainer = styled(({ darkModeOn, ...rest }) => (
     rgba(8,14,44, 0.3)
   )`
         : `linear-gradient(
-    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.3),
     rgba(255, 255, 255, 0.9),
     rgb(255, 255, 255, 1),
@@ -24,4 +24,6 @@ export const AppContainer = styled(({ darkModeOn, ...rest }) => (
     url(${background});
   min-height: 100vh;
   transition: all 1.2s;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;

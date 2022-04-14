@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FormControlLabel, Switch } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
+import { StyledSwitch } from "./Switch.styled";
 import {
   addCityToFavorites,
   removeCityFromFavorites,
@@ -26,7 +27,7 @@ export const FavoritesSwitch = () => {
   return (
     <FormControlLabel
       control={
-        <Switch
+        <StyledSwitch
           checked={isFavorite}
           onChange={handleAddToFavorites}
           inputProps={{ "aria-label": "controlled" }}

@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Herolo weathe app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed on Netlify : https://movie-name-game.netlify.app/
 
-## Available Scripts
+## Motivation
 
-In the project directory, you can run:
+I have built this project as a home assignment,part of recruitment process for a Front-end developer position at ABRA-it
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application shows the weather of some city (default city is Tel Aviv)
+User can search for a city name,choose the city and get a 5 day weather forecast for the
+chosen city.
+User can also save the city as his favorite city (data is saved localy)
+User can switch between dark mode and light mode
+User can switch to see the temperature in both imperial and metric units
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## API used
 
-### `npm test`
+3 endpoints were used in this project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Location autocomplete: <br />
+  https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/cities/autocomplete
+- Get current weather : <br />
+  https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D
+- Five Day Forecast : <br />
+  https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D
 
-### `npm run build`
+## Technologies used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Created with create-react-app and used the following libraries
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React (17.0.2)
+- React-router-dom
+- Material-ui
+- styled-components
+- ReduxJS toolkit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+To run this project locally clone this repository
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `npm install`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Installs dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `npm run start`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Runs the app on the local server.<br>
+Opens http://localhost:3000
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Web
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="center">  
+      <img alt="home" src="/public/app-screenshots/home.PNG" width="45%">
+      <img alt="home-dark" src="public/app-screenshots/home-dark.PNG" width="45%">
+      <img alt="favorites" src="public/app-screenshots/favorites.PNG" width="45%">
+      <img alt="favorites-dark" src="public/app-screenshots/favorites-dark.PNG" width="45%">
+</p>
+Mobile
+<p align="center">  
+      <img alt="mobilehome" src="public/app-screenshots/mobilehome.PNG" width="20%">
+      <img alt="mobilehome-dark" src="public/app-screenshots/mobilehome-dark.PNG" width="20%">
+      <img alt="mobilefavorites" src="public/app-screenshots/mobilefavorites.PNG" width="20%">
+      <img alt="mobilewfavorites-dark" src="public/app-screenshots/mobilewfavorites-dark.PNG" width="20%">
+</p>

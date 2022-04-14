@@ -9,7 +9,6 @@ import { Provider } from "react-redux";
 // Theme
 import { ThemeProvider } from "@mui/styles";
 import theme from "./theme";
-
 import "./index.css";
 
 ReactDOM.render(
